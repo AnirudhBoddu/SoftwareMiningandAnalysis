@@ -29,7 +29,7 @@ public class NestedTryBlockDetector {
 		}
 	}
 
-	static class   extends ASTVisitor {
+	static class Visitor  extends ASTVisitor {
 
 		private CompilationUnit compilationUnit;
 
