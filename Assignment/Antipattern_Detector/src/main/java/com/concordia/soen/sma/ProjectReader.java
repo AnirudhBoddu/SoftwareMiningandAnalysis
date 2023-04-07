@@ -18,20 +18,21 @@ public class ProjectReader {
 		Collection<File> files = FileUtils.listFiles(new File(directoryPath), new String[] { "java" }, true);
 
 		// Create a FileWriter object to write to a file
-		FileWriter fileWriter = new FileWriter("output.txt");
+		FileWriter csvWriter = new FileWriter("output.csv");
+		csvWriter.append("File Path, Line Number, Type\n");
 
 		for (File file : files) {
 			String filePath = file.getAbsolutePath();
 			try {
 				// Pass the FileWriter object to the NestedTryBlockDetector instance
-				detectExceptionalHandlingAntiPatterns(filePath, fileWriter);
+				detectExceptionalHandlingAntiPatterns(filePath, csvWriter);
 			} catch (IOException e) {
 				System.err.println("Error reading file " + filePath + ": " + e.getMessage());
 			}
 		}
 
 		// Close the FileWriter object after processing all files
-		fileWriter.close();
+		csvWriter.close();
 	}
 
 	private static void detectExceptionalHandlingAntiPatterns(String filePath, FileWriter writer) throws IOException {
