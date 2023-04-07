@@ -1,61 +1,38 @@
-import com.github.javaparser.JavaParser;
-import com.github.javaparser.ParseProblemException;
-import com.github.javaparser.ast.CompilationUnit;
-import com.github.javaparser.ast.NodeList;
-import com.github.javaparser.ast.body.MethodDeclaration;
-import com.github.javaparser.ast.expr.MethodCallExpr;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+package com.concordia.soen.sma;
 
-import java.io.File;
+import org.eclipse.jdt.core.dom.ASTVisitor;
+import org.eclipse.jdt.core.dom.CompilationUnit;
+import org.eclipse.jdt.core.dom.MethodDeclaration;
+
 import java.io.IOException;
-import java.nio.file.Files;
+import java.io.Writer;
 
 public class KitchenSinkDetector extends ASTVisitor {
 
-    public static void main(String[] args) {
+    private CompilationUnit cu;
+    private String filePath;
+    private Writer writer;
+    private static final int THROWS_THRESHOLD = 5;
 
-        private String filePath;
-	  private CompilationUnit cu;
-	
-	public KitchenSinkDetector(CompilationUnit cu, String filePath)
-	{ 
-		this.cu = cu;
-		this.filepath = filepath;
-	}	
+    public KitchenSinkDetector(CompilationUnit cu, String filePath, Writer writer) {
+        this.cu = cu;
+        this.filePath = filePath;
+        this.writer = writer;
+    }
 
-        // visit all the MethodDeclaration nodes in the AST and check for the kitchen sink anti-pattern
-        cu.accept(new VoidVisitorAdapter<Void>() {
-            @Override
-            public void visit(MethodDeclaration md, Void arg) {
-                // get all the method calls made within the method
-                NodeList<MethodCallExpr> methodCalls = md.findAll(MethodCallExpr.class);
+    @Override
+    public boolean visit(MethodDeclaration md) {
+        int throwsCount = md.thrownExceptionTypes().size();
 
-                // count the number of method calls
-                int methodCallCount = methodCalls.size();
-
-                // calculate the complexity score
-                double complexityScore = Math.log(methodCallCount + 1) / Math.log(2);
-
-                // set the threshold for the kitchen sink anti-pattern
-                double threshold = 5;
-
-                // check if the complexity score exceeds the threshold
-                if (complexityScore > threshold) {
-                    System.out.println("Kitchen sink anti-pattern detected in method " + md.getNameAsString()
-                            + " at line " + md.getBegin().get().line);
-                }
-
-                super.visit(md, arg);
+        if (throwsCount > THROWS_THRESHOLD) {
+            int lineNumber = cu.getLineNumber(md.getName().getStartPosition());
+            try {
+                writer.write("Throws Kitchen Sink"+" ,"+filePath + "," + lineNumber + "," + md.getName().getIdentifier() + "\n");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        }, null);
+        }
+        return super.visit(md);
     }
 
-    private static CompilationUnit parseFile(String filePath) {
-        try {
-            String fileContent = new String(Files.readAllBytes(new File(filePath).toPath()));
-            return JavaParser.parse(fileContent);
-        } catch (IOException | ParseProblemException e) {
-            throw new RuntimeException("Failed to parse file: " + filePath, e);
-        }
-    }
 }
