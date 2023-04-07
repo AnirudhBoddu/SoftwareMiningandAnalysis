@@ -14,7 +14,7 @@ public class ProjectReader {
 	// The main method of the class which reads a java file input directory and detects anti-patterns in each file.
 	public static void main(String[] args) {
 		
-		String directoryPath = "Test-Directory";
+		String directoryPath = "D:\\SoftwareMiningandAnalysis\\hibernate-orm";
 		
 		// Lists all files in a directory and its sub-directories (matching .java extension).
 		Collection<File> files = FileUtils.listFiles(new File(directoryPath), new String[] { "java" }, true);
