@@ -3,14 +3,20 @@ package com.concordia.soen.sma;
 
 import org.eclipse.jdt.core.dom.*;
 
+import java.io.IOException;
+import java.io.Writer;
+
 public class NestedTryBlockDetector extends ASTVisitor {
 	
 	private CompilationUnit cu;
 	private String filePath;
 
-	public NestedTryBlockDetector(CompilationUnit cu, String filePath) {
+	private Writer writer;
+
+	public NestedTryBlockDetector(CompilationUnit cu, String filePath, Writer writer) {
 		this.cu = cu;
 		this.filePath = filePath;
+		this.writer = writer;
 	}
 
 	@Override
@@ -30,7 +36,11 @@ public class NestedTryBlockDetector extends ASTVisitor {
 					
 					// Get the line number of the try statement node and print to the console.
 					int lineNumber = cu.getLineNumber(node.getStartPosition());
-					System.out.println("Nested try block detected in line " + lineNumber + " of " + filePath);
+					try {
+						writer.write("Nested try block detected in line " + lineNumber + " of " + filePath + "\n");
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
 				}
 			}
 		}
@@ -54,7 +64,11 @@ public class NestedTryBlockDetector extends ASTVisitor {
 					
 					// Get the line number of the catch statement node and print to the console.
 					int lineNumber = cu.getLineNumber(node.getStartPosition());
-					System.out.println("Nested try block detected in catch block in line " + lineNumber + " of " + filePath);
+					try {
+						writer.write("Nested try block detected in catch block in line " + lineNumber + " of " + filePath + "\n");
+					} catch (IOException e) {
+						throw new RuntimeException(e);
+					}
 				}
 			}
 		}
