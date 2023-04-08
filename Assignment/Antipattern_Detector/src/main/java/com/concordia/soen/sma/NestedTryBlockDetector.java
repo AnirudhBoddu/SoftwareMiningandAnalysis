@@ -1,5 +1,5 @@
 // This class is used to detect nested try blocks and report them to the console.
-package com.concordia.soen.sma;
+package main.java.com.concordia.soen.sma;
 
 import org.eclipse.jdt.core.dom.*;
 

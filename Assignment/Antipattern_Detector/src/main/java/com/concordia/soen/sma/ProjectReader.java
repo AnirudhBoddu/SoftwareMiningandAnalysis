@@ -1,5 +1,5 @@
 // This class is used to read a java project directory and detect exceptional handling anti-patterns in the code.
-package com.concordia.soen.sma;
+package main.java.com.concordia.soen.sma;
 
 import java.io.File;
 import java.io.FileWriter;

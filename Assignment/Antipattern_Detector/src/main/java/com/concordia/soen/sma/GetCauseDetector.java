@@ -1,4 +1,4 @@
-package com.concordia.soen.sma;
+package main.java.com.concordia.soen.sma;
 
 import java.io.IOException;
 import java.io.Writer;
