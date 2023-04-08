@@ -19,9 +19,9 @@ public class KitchenSinkDetector extends ASTVisitor {
         this.filePath = filePath;
         this.writer = writer;
     }
-
+   
     @Override
-    public boolean visit(MethodDeclaration md) {
+    public boolean  visit(MethodDeclaration md) {
         int throwsCount = md.thrownExceptionTypes().size();
 
         if (throwsCount > THROWS_THRESHOLD) {
