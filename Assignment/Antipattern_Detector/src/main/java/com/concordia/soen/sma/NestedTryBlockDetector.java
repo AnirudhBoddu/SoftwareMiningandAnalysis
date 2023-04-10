@@ -37,7 +37,7 @@ public class NestedTryBlockDetector extends ASTVisitor {
 					// Get the line number of the try statement node and print to the console.
 					int lineNumber = cu.getLineNumber(node.getStartPosition());
 					try {
-						writer.write(filePath + "," + lineNumber + "," + "try" + "\n");
+						writer.write("Nested Try Block"+" ,"+filePath + "," + lineNumber + "," + "try" + "\n");
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
@@ -65,7 +65,7 @@ public class NestedTryBlockDetector extends ASTVisitor {
 					// Get the line number of the catch statement node and print to the console.
 					int lineNumber = cu.getLineNumber(node.getStartPosition());
 					try {
-						writer.write(filePath + "," + lineNumber + "," + "catch" + "\n");
+						writer.write("Nested Try Block"+" ,"+filePath + "," + lineNumber + "," + "catch" + "\n");
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}

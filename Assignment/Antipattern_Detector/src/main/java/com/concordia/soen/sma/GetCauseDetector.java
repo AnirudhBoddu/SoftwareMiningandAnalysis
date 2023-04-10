@@ -39,14 +39,11 @@ class GetCauseDetector extends ASTVisitor {
             	{
 	            	int lineNumber = cu.getLineNumber(node.getStartPosition());
 	            	try {
-						writer.write(filePath + "," + lineNumber + "," + "getCause" + "\n");
+						writer.write("Relying on getCause()"+" ,"+filePath + "," + lineNumber + "," + node.getName() + "\n");
 					} catch (IOException e) {
 						throw new RuntimeException(e);
 					}
-					//System.out.println("Found getCause call on throwable at line " + lineNumber + " of " + filePath);
             	}
-            	
-            
         }
         return super.visit(node);
     }
