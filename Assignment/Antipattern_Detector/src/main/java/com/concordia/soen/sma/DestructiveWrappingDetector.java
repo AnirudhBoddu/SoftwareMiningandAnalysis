@@ -1,4 +1,4 @@
-
+package com.concordia.soen.sma;
 
 import org.eclipse.jdt.core.dom.*;
 
