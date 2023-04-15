@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eb8b6614-7472-4c12-99e4-3ab5a627f23d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/2/a/2ad82957d13052e34cdbe7b1fc1b76b0d60fdb46" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/2/a/2ad82957d13052e34cdbe7b1fc1b76b0d60fdb46" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/e/9/e9cb40eac42b120358bbfc3c96b07fe2d7ddba8e" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/e/9/e9cb40eac42b120358bbfc3c96b07fe2d7ddba8e" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/src/main/java/com/concordia/soen/sma/DestructiveWrappingDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/src/main/java/com/concordia/soen/sma/DestructiveWrappingDetector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/src/main/java/com/concordia/soen/sma/KitchenSinkDetector.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assignment/Antipattern_Detector/src/main/java/com/concordia/soen/sma/KitchenSinkDetector.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2OTjfoJbHEJygLHX3BDiaLyTOPM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/SoftwareMiningandAnalysis/Project/PostReleaseBugAggregator",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb8b6614-7472-4c12-99e4-3ab5a627f23d" name="Changes" comment="" />
+      <created>1681591574413</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681591574413</updated>
+      <workItem from="1681591575518" duration="118000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
