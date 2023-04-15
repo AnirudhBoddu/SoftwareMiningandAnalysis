@@ -21,6 +21,14 @@ class GetCauseDetector extends ASTVisitor {
 		this.writer = writer;
 	}
 
+	/**
+	 * This is a code that examines the supplied AST and looks for a specific method call getCause().
+	 * When it finds this method call, it checks if the object on which the method is called is a subclass of
+	 * the Throwable class. If it is, it logs the file name, line number, and method name to an output file.
+	 *
+	 * @param node the node to visit
+	 * @return
+	 */
     @Override
     public boolean visit(MethodInvocation node) {
         if (node.getName().getIdentifier().equals("getCause")) {

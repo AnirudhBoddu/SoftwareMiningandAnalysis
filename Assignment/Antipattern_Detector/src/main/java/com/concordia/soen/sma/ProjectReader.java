@@ -18,11 +18,11 @@ public class ProjectReader {
 	private static final String[] FILE_EXTENSIONS = new String[] { "java" };
 
 	public static void main(String[] args) throws IOException {
-		String directoryPath = "D:\\SoftwareMiningandAnalysis\\apache-ant-1.9.7-src\\apache-ant-1.9.7";
+		String directoryPath = "C:\\Users\\ANIRUDH BODDU\\Desktop\\Software Mining and Analysis\\hibernate-orm-5.2.0\\hibernate-orm-5.2.0";
 		Collection<File> files = FileUtils.listFiles(new File(directoryPath), FILE_EXTENSIONS, true);
 		FileWriter csvWriter = new FileWriter(CSV_FILE_NAME);
 		csvWriter.append("Anti-Pattern, File Path, Line Number, Other details\n");
-
+		System.out.println("Anti-Patterns extraction start...");
 		for (File file : files) {
 			String filePath = file.getAbsolutePath();
 			try {
@@ -35,7 +35,7 @@ public class ProjectReader {
 				System.err.println("Error reading file " + filePath + ": " + e.getMessage());
 			}
 		}
-
+		System.out.println("Anti-Patterns extraction complete!");
 		csvWriter.close();
 	}
 
