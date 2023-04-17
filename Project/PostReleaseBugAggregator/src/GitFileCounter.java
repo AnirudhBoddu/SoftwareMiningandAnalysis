@@ -10,7 +10,7 @@ public class GitFileCounter {
 
     public static void main(String[] args) {
         // Set paths to input files
-        String keysFile = "D:\\SoftwareMiningandAnalysis\\Project\\PostReleaseBugs-Keys.txt";
+        String keysFile = "D:\\SoftwareMiningandAnalysis\\Project\\PreReleaseBugs-Keys.txt";
         String commitsFile = "D:\\SoftwareMiningandAnalysis\\hibernate-orm\\commits-520.txt";
 
         // Read in the keys from the keys file
@@ -79,9 +79,9 @@ public class GitFileCounter {
 
     // Writes the file counts to a CSV file
     public static void writeOutputToFile(Map<String, Integer> fileCounts) {
-        try (PrintWriter writer = new PrintWriter(new File("PostReleaseBugs.csv"))) {
+        try (PrintWriter writer = new PrintWriter(new File("PreReleaseBugs.csv"))) {
             StringBuilder sb = new StringBuilder();
-            sb.append("File,post_release_bugs\n"); // Add the header to the CSV file
+            sb.append("File,pre_release_bugs\n"); // Add the header to the CSV file
             for (String file : fileCounts.keySet()) {
                 sb.append(file);
                 sb.append(",");
@@ -89,7 +89,7 @@ public class GitFileCounter {
                 sb.append("\n"); // Add the file name and its count to the CSV file
             }
             writer.write(sb.toString()); // Write the string to the file
-            System.out.println("Output written to PostReleaseBugs.csv");
+            System.out.println("Output written to PreReleaseBugs.csv");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
