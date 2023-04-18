@@ -26,22 +26,34 @@ public class ProjectReader {
         for (File file : files) {
             String filePath = file.getAbsolutePath();
             try {
-                int countCatchAndReturnNull, countOverCatch, countCatchAndDoNothing;
+                int countCatchAndReturnNull, countOverCatch, countCatchAndDoNothing, countNestedTryBlock,
+                        countGetCause, countKitchenSink, countDestructiveWrapping;
                 CompilationUnit cu = parseFile(filePath);
                 cu.accept(new CatchAndReturnNullDetector(cu, file));
                 cu.accept(new OverCatchDetector(cu, file));
                 cu.accept(new CatchAndDoNothingDetector(cu, file));
+                cu.accept(new NestedTryBlockDetector(cu, file));
+                cu.accept(new GetCauseDetector(cu, file));
+                cu.accept(new KitchenSinkDetector(cu, file));
+                cu.accept(new DestructiveWrappingDetector(cu, file));
                 countCatchAndReturnNull = CatchAndReturnNullDetector.CatchAndReturnNullCount();
                 countOverCatch = OverCatchDetector.OverCatchCount();
                 countCatchAndDoNothing = CatchAndDoNothingDetector.CatchAndDoNothingCount();
-                output.add(new String[] {file.getName(), String.valueOf(countCatchAndReturnNull), String.valueOf(countOverCatch), String.valueOf(countCatchAndDoNothing)});
+                countNestedTryBlock = NestedTryBlockDetector.NestedTryBlockCount();
+                countGetCause =  GetCauseDetector.GetCauseCount();
+                countKitchenSink = KitchenSinkDetector.KitchenSinkCount();
+                countDestructiveWrapping = DestructiveWrappingDetector.DestructiveWrappingCount();
+                output.add(new String[] {file.getName(), String.valueOf(countCatchAndReturnNull), String.valueOf(countOverCatch),
+                        String.valueOf(countCatchAndDoNothing), String.valueOf(countNestedTryBlock), String.valueOf(countGetCause),
+                        String.valueOf(countKitchenSink), String.valueOf(countDestructiveWrapping)});
             } catch (IOException e) {
                 System.err.println("Error reading file " + filePath + ": " + e.getMessage());
             }
         }
 
         try (CSVPrinter printer = new CSVPrinter(new FileWriter("antipatternsCount.csv"), CSVFormat.DEFAULT)) {
-            printer.printRecord("Filename", "countCatchAndReturnNull", "countOverCatch", "countCatchAndDoNothing");
+            printer.printRecord("Filename", "countCatchAndReturnNull", "countOverCatch", "countCatchAndDoNothing",
+                    "countNestedTryBlock", "countGetCause", "countKitchenSink", "countDestructiveWrapping");
             for (String[] row : output) {
                 printer.printRecord(row);
             }
