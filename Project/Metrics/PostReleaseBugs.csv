@@ -1,4 +1,4 @@
-File,post_release_bugs
+Filename,post_release_bugs
 hibernate-core/src/test/java/org/hibernate/test/schemaupdate/foreignkeys/definition/ForeignKeyDefinitionSecondaryTableTest.java,1
 hibernate-core/src/test/java/org/hibernate/test/schemaupdate/foreignkeys/SchemaUpdateWithKeywordAutoQuotingEnabledTest.java,1
 hibernate-core/src/main/java/org/hibernate/dialect/PostgreSQL95Dialect.java,1

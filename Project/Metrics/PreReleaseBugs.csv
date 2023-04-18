@@ -1,4 +1,4 @@
-File,pre_release_bugs
+Filename,pre_release_bugs
 hibernate-core/src/test/java/org/hibernate/jpa/test/criteria/selectcase/SelectCaseTest.java,1
 hibernate-core/src/main/java/org/hibernate/engine/jdbc/cursor/internal/StandardRefCursorSupport.java,1
 hibernate-envers/src/test/java/org/hibernate/envers/test/integration/query/embeddables/EmbeddableQuery.java,1
