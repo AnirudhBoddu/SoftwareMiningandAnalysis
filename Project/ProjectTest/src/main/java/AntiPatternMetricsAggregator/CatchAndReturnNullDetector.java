@@ -1,3 +1,5 @@
+package AntiPatternMetricsAggregator;
+
 import org.eclipse.jdt.core.dom.*;
 
 import java.io.File;
@@ -41,6 +43,5 @@ public class CatchAndReturnNullDetector extends ASTVisitor {
     public static int CatchAndReturnNullCount(){
         return count;
     }
-
 
 }

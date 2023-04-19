@@ -1,3 +1,5 @@
+package AntiPatternMetricsAggregator;
+
 import org.eclipse.jdt.core.dom.*;
 
 import java.io.File;
@@ -34,7 +36,6 @@ public class NestedTryBlockDetector extends ASTVisitor {
                 // If a statement is a TryStatement node...
                 if (statement instanceof TryStatement) {
                     // Get the line number of the try statement node and print to the console.
-                    int lineNumber = cu.getLineNumber(node.getStartPosition());
                     count++;
                     // Visit the nested try statement recursively
                     ((TryStatement) statement).accept(this);

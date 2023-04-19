@@ -1,4 +1,4 @@
-// This class is used to read a java project directory and detect exceptional handling anti-patterns in the code.
+package AntiPatternMetricsAggregator;// This class is used to read a java project directory and detect exceptional handling anti-patterns in the code.
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
