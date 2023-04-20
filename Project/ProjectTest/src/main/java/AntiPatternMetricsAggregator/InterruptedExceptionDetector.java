@@ -1,4 +1,3 @@
-package AntiPatternMetricsAggregator;
 import org.eclipse.jdt.core.dom.*;
 
 import java.io.File;
@@ -31,8 +30,6 @@ public class InterruptedExceptionDetector extends ASTVisitor {
             if (node.getBody().statements().isEmpty()) {
                 count++;
             }
-
-
         }
         temp= file;
 

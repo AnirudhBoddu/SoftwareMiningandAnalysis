@@ -1,5 +1,3 @@
-package AntiPatternMetricsAggregator;
-
 
 
 import org.eclipse.jdt.core.dom.*;
@@ -31,6 +29,11 @@ public class IncompleteImplementationDetector extends ASTVisitor{
         new detectIncompleteImplementationInMethodThrowsClause(cu,file);
     }
 
+    public static Integer IncompleteImplementationCount() {
+        return count;
+    }
+
+
     private class detectIncompleteImplementationInMethodThrowsClause extends ASTVisitor {
 
         CompilationUnit cu;
@@ -56,73 +59,73 @@ public class IncompleteImplementationDetector extends ASTVisitor{
         }
     }
 
-    private class detectIncompleteImplementationInCatchClauseParameter extends ASTVisitor {
+        private class detectIncompleteImplementationInCatchClauseParameter extends ASTVisitor {
 
-        CompilationUnit cu;
-        File file;
+            CompilationUnit cu;
+            File file;
 
-        detectIncompleteImplementationInCatchClauseParameter(CompilationUnit cu, File file) {
+            detectIncompleteImplementationInCatchClauseParameter(CompilationUnit cu, File file) {
 
-            this.cu = cu;
-            this.file = file;
-        }
-
-        @Override
-        public boolean visit(CatchClause node) {
-            SingleVariableDeclaration exceptionDeclaration = node.getException();
-            Type exceptionType = exceptionDeclaration.getType();
-            if (exceptionType == null) {
-                count++;
+                this.cu = cu;
+                this.file = file;
             }
 
-            temp= file;
-            return super.visit(node);
-        }
-    }
+            @Override
+            public boolean visit(CatchClause node) {
+                SingleVariableDeclaration exceptionDeclaration = node.getException();
+                Type exceptionType = exceptionDeclaration.getType();
+                if (exceptionType == null) {
+                    count++;
+                }
 
-    private class detectIncompleteImplementationInCatchClauseBody extends ASTVisitor {
-
-        CompilationUnit cu;
-        File file;
-
-        detectIncompleteImplementationInCatchClauseBody(CompilationUnit cu, File file) {
-            this.cu =cu;
-            this.file= file;
+                temp= file;
+                return super.visit(node);
+            }
         }
 
-        @Override
-        public boolean visit(CatchClause node) {
-            Block catchBody = node.getBody();
-            if (catchBody.statements().isEmpty()) {
-                count++;
+        private class detectIncompleteImplementationInCatchClauseBody extends ASTVisitor {
+
+            CompilationUnit cu;
+            File file;
+
+            detectIncompleteImplementationInCatchClauseBody(CompilationUnit cu, File file) {
+                this.cu =cu;
+                this.file= file;
             }
 
-            temp= file;
-            return super.visit(node);
-        }
-    }
+            @Override
+            public boolean visit(CatchClause node) {
+                Block catchBody = node.getBody();
+                if (catchBody.statements().isEmpty()) {
+                    count++;
+                }
 
-    private class detectIncompleteImplementationInCatchClauseFinallyBlock extends ASTVisitor {
-
-        CompilationUnit cu;
-        File file;
-
-        detectIncompleteImplementationInCatchClauseFinallyBlock(CompilationUnit cu, File file){
-            this.cu= cu;
-            this.file= file;
-        }
-
-        @Override
-        public boolean visit(TryStatement node) {
-            Block finallyBlock = node.getFinally();
-            if (finallyBlock != null && finallyBlock.statements().isEmpty()) {
-                count++;
+                temp= file;
+                return super.visit(node);
             }
-            return super.visit(node);
+        }
+
+        private class detectIncompleteImplementationInCatchClauseFinallyBlock extends ASTVisitor {
+
+            CompilationUnit cu;
+            File file;
+
+            detectIncompleteImplementationInCatchClauseFinallyBlock(CompilationUnit cu, File file){
+                this.cu= cu;
+                this.file= file;
+            }
+
+            @Override
+            public boolean visit(TryStatement node) {
+                Block finallyBlock = node.getFinally();
+                if (finallyBlock != null && finallyBlock.statements().isEmpty()) {
+                    count++;
+                }
+                return super.visit(node);
+            }
+
         }
     }
 
-    public static Integer countIncompleteImplementation() {
-        return count;
-    }
-}
+
+
