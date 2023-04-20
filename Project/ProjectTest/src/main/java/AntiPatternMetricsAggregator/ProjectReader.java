@@ -19,7 +19,7 @@ public class ProjectReader {
     static Map<String,Integer> hm= new HashMap<>();
 
     public static void main(String[] args) throws IOException {
-        String directoryPath = "C:\\Users\\ANIRUDH BODDU\\Desktop\\Software Mining and Analysis\\hibernate-orm-5.2.0\\hibernate-orm-5.2.0";
+        String directoryPath = "C:\\Users\\ss161\\Downloads\\hibernate-orm-5.2.0\\hibernate-orm-5.2.0";
         Collection<File> files = FileUtils.listFiles(new File(directoryPath), FILE_EXTENSIONS, true);
         List<String[]> output = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class ProjectReader {
             try {
                 int countCatchAndReturnNull, countOverCatch, countCatchAndDoNothing, countNestedTryBlock,
                         countGetCause, countKitchenSink, countDestructiveWrapping, countOverCatchAndAbort,
-                        countCatchGeneric;
+                        countCatchGeneric, countInterruptedException, countIncompleteImplementation;
                 CompilationUnit cu = parseFile(filePath);
                 cu.accept(new CatchAndReturnNullDetector(cu, file));
                 cu.accept(new OverCatchDetector(cu, file));
@@ -39,6 +39,8 @@ public class ProjectReader {
                 cu.accept(new DestructiveWrappingDetector(cu, file));
                 cu.accept(new OverCatchAndAbortDetector(cu, file));
                 cu.accept(new CatchGenericDetector(cu, file));
+                cu.accept(new InterruptedExceptionDetector(cu, file));
+                cu.accept(new IncompleteImplementationDetector(cu, file));
                 countCatchAndReturnNull = CatchAndReturnNullDetector.CatchAndReturnNullCount();
                 countOverCatch = OverCatchDetector.OverCatchCount();
                 countCatchAndDoNothing = CatchAndDoNothingDetector.CatchAndDoNothingCount();
@@ -48,10 +50,12 @@ public class ProjectReader {
                 countDestructiveWrapping = DestructiveWrappingDetector.DestructiveWrappingCount();
                 countOverCatchAndAbort = OverCatchAndAbortDetector.OverCatchAndAbortCount();
                 countCatchGeneric = CatchGenericDetector.getCatchGenericCount();
+                countInterruptedException= InterruptedExceptionDetector.InterruptedExceptionCount();
+                countIncompleteImplementation= IncompleteImplementationDetector.countIncompleteImplementation();
                 output.add(new String[] {file.getName(), String.valueOf(countCatchAndReturnNull), String.valueOf(countOverCatch),
                         String.valueOf(countCatchAndDoNothing), String.valueOf(countNestedTryBlock), String.valueOf(countGetCause),
                         String.valueOf(countKitchenSink), String.valueOf(countDestructiveWrapping), String.valueOf(countOverCatchAndAbort),
-                        String.valueOf(countCatchGeneric)});
+                        String.valueOf(countCatchGeneric), String.valueOf(countInterruptedException), String.valueOf(countIncompleteImplementation)});
             } catch (IOException e) {
                 System.err.println("Error reading file " + filePath + ": " + e.getMessage());
             }
@@ -59,7 +63,8 @@ public class ProjectReader {
 
         try (CSVPrinter printer = new CSVPrinter(new FileWriter("anti-patternsCount.csv"), CSVFormat.DEFAULT)) {
             printer.printRecord("Filename", "countCatchAndReturnNull", "countOverCatch", "countCatchAndDoNothing",
-                    "countNestedTryBlock", "countGetCause", "countKitchenSink", "countDestructiveWrapping", "countOverCatchAndAbort", "countCatchGeneric");
+                    "countNestedTryBlock", "countGetCause", "countKitchenSink", "countDestructiveWrapping", "countOverCatchAndAbort", "countCatchGeneric",
+                    "countInterruptedException", "countIncompleteImplementation");
             for (String[] row : output) {
                 printer.printRecord(row);
             }
