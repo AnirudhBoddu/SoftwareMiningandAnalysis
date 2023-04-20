@@ -28,7 +28,8 @@ public class ProjectReader {
             try {
                 int countCatchAndReturnNull, countOverCatch, countCatchAndDoNothing, countNestedTryBlock,
                         countGetCause, countKitchenSink, countDestructiveWrapping, countOverCatchAndAbort,
-                        countCatchGeneric, countInterruptedException, countIncompleteImplementation, countDummyHandler;
+                        countCatchGeneric, countInterruptedException, countIncompleteImplementation, countDummyHandler,
+                        countLogAndReturnNull;
                 CompilationUnit cu = parseFile(filePath);
                 cu.accept(new CatchAndReturnNullDetector(cu, file));
                 cu.accept(new OverCatchDetector(cu, file));
@@ -42,6 +43,7 @@ public class ProjectReader {
                 cu.accept(new InterruptedExceptionDetector(cu, file));
                 cu.accept(new IncompleteImplementationDetector(cu, file));
                 cu.accept(new DummyHandlerDetector(cu, file));
+                cu.accept(new LogAndReturnNullDetector(cu, file));
 
                 countCatchAndReturnNull = CatchAndReturnNullDetector.CatchAndReturnNullCount();
                 countOverCatch = OverCatchDetector.OverCatchCount();
@@ -55,12 +57,13 @@ public class ProjectReader {
                 countInterruptedException= InterruptedExceptionDetector.InterruptedExceptionCount();
                 countIncompleteImplementation= IncompleteImplementationDetector.countIncompleteImplementation();
                 countDummyHandler= DummyHandlerDetector.countDummyHandler();
+                countLogAndReturnNull= LogAndReturnNullDetector.countLogAndReturnNullDetector();
 
                 output.add(new String[] {file.getName(), String.valueOf(countCatchAndReturnNull), String.valueOf(countOverCatch),
                         String.valueOf(countCatchAndDoNothing), String.valueOf(countNestedTryBlock), String.valueOf(countGetCause),
                         String.valueOf(countKitchenSink), String.valueOf(countDestructiveWrapping), String.valueOf(countOverCatchAndAbort),
                         String.valueOf(countCatchGeneric), String.valueOf(countInterruptedException), String.valueOf(countIncompleteImplementation),
-                        String.valueOf(countDummyHandler)});
+                        String.valueOf(countDummyHandler), String.valueOf(countLogAndReturnNull)});
             } catch (IOException e) {
                 System.err.println("Error reading file " + filePath + ": " + e.getMessage());
             }
@@ -69,7 +72,7 @@ public class ProjectReader {
         try (CSVPrinter printer = new CSVPrinter(new FileWriter("anti-patternsCount.csv"), CSVFormat.DEFAULT)) {
             printer.printRecord("Filename", "countCatchAndReturnNull", "countOverCatch", "countCatchAndDoNothing",
                     "countNestedTryBlock", "countGetCause", "countKitchenSink", "countDestructiveWrapping", "countOverCatchAndAbort", "countCatchGeneric",
-                    "countInterruptedException", "countIncompleteImplementation","countDummyHandler");
+                    "countInterruptedException", "countIncompleteImplementation","countDummyHandler","countLogAndReturnNull");
             for (String[] row : output) {
                 printer.printRecord(row);
             }
