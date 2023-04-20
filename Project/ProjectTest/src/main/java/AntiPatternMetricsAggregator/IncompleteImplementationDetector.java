@@ -1,4 +1,4 @@
-
+package AntiPatternMetricsAggregator;
 
 import org.eclipse.jdt.core.dom.*;
 import java.io.File;
@@ -29,7 +29,7 @@ public class IncompleteImplementationDetector extends ASTVisitor{
         new detectIncompleteImplementationInMethodThrowsClause(cu,file);
     }
 
-    public static Integer IncompleteImplementationCount() {
+    public static Integer countIncompleteImplementation() {
         return count;
     }
 
