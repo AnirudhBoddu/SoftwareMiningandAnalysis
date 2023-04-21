@@ -4,7 +4,6 @@ import org.eclipse.jdt.core.dom.*;
 
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class CatchAndDoNothingDetector extends ASTVisitor{

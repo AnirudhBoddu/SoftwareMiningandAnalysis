@@ -6,8 +6,6 @@ import org.eclipse.jdt.core.dom.Expression;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.Writer;
 
 class GetCauseDetector extends ASTVisitor {
 
