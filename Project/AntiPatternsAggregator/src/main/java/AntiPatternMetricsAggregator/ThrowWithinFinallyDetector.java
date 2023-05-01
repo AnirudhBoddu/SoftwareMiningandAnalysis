@@ -4,7 +4,6 @@ import java.io.File;
 
 import org.eclipse.jdt.core.dom.ASTVisitor;
 import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.core.dom.Statement;
 import org.eclipse.jdt.core.dom.TryStatement;
 
 public class ThrowWithinFinallyDetector extends ASTVisitor {
@@ -20,6 +19,7 @@ public class ThrowWithinFinallyDetector extends ASTVisitor {
 
 	@Override
 	public boolean visit(TryStatement node) {
+		//check if file in temporary equals file 
 		if (!temp.getName().equals(file.getName())) {
 			throwWithinFinallyCount = 0;
 		}
