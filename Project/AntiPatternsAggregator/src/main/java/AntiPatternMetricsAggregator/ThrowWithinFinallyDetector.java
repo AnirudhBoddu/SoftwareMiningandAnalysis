@@ -23,6 +23,7 @@ public class ThrowWithinFinallyDetector extends ASTVisitor {
 		if (!temp.getName().equals(file.getName())) {
 			throwWithinFinallyCount = 0;
 		}
+		
 		/*
 		 * for (Object obj : node.getBody().statements()) { if (obj instanceof
 		 * Statement) { Statement statement = (Statement) obj; statement.accept(this); }
