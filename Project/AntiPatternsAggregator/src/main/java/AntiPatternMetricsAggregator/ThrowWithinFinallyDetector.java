@@ -20,7 +20,6 @@ public class ThrowWithinFinallyDetector extends ASTVisitor {
 
 	@Override
 	public boolean visit(TryStatement node) {
-		
 		if (!temp.getName().equals(file.getName())) {
 			throwWithinFinallyCount = 0;
 		}
